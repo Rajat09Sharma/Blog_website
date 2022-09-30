@@ -130,20 +130,6 @@ app.post("/create",function(req,res){
             res.redirect("/postHome");
         }
     });
-    // Users.findById(req.user.id, function(err,foundUser){
-    //     if(err){
-    //         console.log(err);
-    //     }else{
-    //         if(foundUser){
-    //             foundUser.post.title=userTitle;
-    //             foundUser.post.content=userContent;
-    //             foundUser.save(function(){
-    //                 res.redirect("/");
-    //             });
-    //         }
-    //     }
-        
-    // });
 });
 
 app.post("/login", function(req, res){
@@ -174,6 +160,12 @@ app.get("/logout",function(req,res){
     });
 });
 
-app.listen(3000,function(req,res){
-    console.log("server startes on port 3000.");
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+
+app.listen(port,function(req,res){
+    console.log("server has startes successfully.");
 });
