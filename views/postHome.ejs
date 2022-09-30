@@ -1,0 +1,23 @@
+<%- include("partials/createHeader") -%>
+
+  <!-- <h2>Publish your thoughts, your way</h2>
+  <h5 class="home-content"> 
+    Don't keep your stroies with you, share them anonymously!
+    Create a unique and beautiful blog easily.<br>
+    <form action="/create" method="get">
+      <button type="submit" class="btn btn-light btn-sm home-btn">CREATE YOUR BLOG</button>
+    </form>
+  </h5> -->
+
+  <h1 style="text-align:center;">DAILY JOURNAL</h1>
+
+
+  
+
+  <% blogPost.forEach(function (item){ %>
+    <h1><%= item.post.title %></h1>
+    <p><%= item.post.content.substring(0,200)+"..." %><a href="/posts/<%= item._id %>">Read More</a></p>
+  <% }) %> 
+
+
+<%- include("partials/footer") -%>
