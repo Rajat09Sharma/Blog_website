@@ -127,3 +127,6 @@ h5{
     margin-bottom: 60px;
 } 
 
+@media (max-width:540px) {
+    textarea {max-width:95%;}
+}
