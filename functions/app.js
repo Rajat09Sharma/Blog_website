@@ -7,6 +7,7 @@ const session=require("express-session");
 const passport=require("passport");
 const passportLocalMongoose=require("passport-local-mongoose");
 const  findOrCreate = require('mongoose-findorcreate');
+const serverless=require("serverless-http");
 
 
 const app=express();
@@ -160,12 +161,14 @@ app.get("/logout",function(req,res){
     });
 });
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 3000;
+// }
 
 
-app.listen(port,function(req,res){
-    console.log("server has startes successfully.");
-});
+// app.listen(port,function(req,res){
+//     console.log("server has startes successfully.");
+// });
+app.use("/.netlify/functions/app",app);
+module.exports.handler=serverless(app);
