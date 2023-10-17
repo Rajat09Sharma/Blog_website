@@ -26,7 +26,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-mongoose.connect(process.env.MONGODB_URL);
+mongoose.connect("mongodb+srv://admin-rajatsharma:BlogDiarytest123@cluster1.ykt0vsz.mongodb.net/diaryDB");
 const blogSchema= new mongoose.Schema({
     post:{
         title:String,                    
