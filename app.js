@@ -7,7 +7,6 @@ const session=require("express-session");
 const passport=require("passport");
 const passportLocalMongoose=require("passport-local-mongoose");
 const  findOrCreate = require('mongoose-findorcreate');
-const serverless=require("serverless-http");
 
 
 const app=express();
@@ -27,7 +26,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-mongoose.connect("mongodb+srv://admin-rajatsharma:BlogDiarytest123@cluster1.ykt0vsz.mongodb.net/diaryDB");
+mongoose.connect(process.env.MONGODB_URL);
 const blogSchema= new mongoose.Schema({
     post:{
         title:String,                    
@@ -161,14 +160,12 @@ app.get("/logout",function(req,res){
     });
 });
 
-// let port = process.env.PORT;
-// if (port == null || port == "") {
-//   port = 3000;
-// }
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
 
-// app.listen(port,function(req,res){
-//     console.log("server has startes successfully.");
-// });
-app.use("/.netlify/functions/app",app);
-module.exports.handler=serverless(app);
+app.listen(port,function(req,res){
+    console.log("server has startes successfully.");
+});
